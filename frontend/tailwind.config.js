@@ -12,7 +12,7 @@ export default {
       fontFamily: {
         ...defaultTheme.fontFamily,
         lato: ['Lato', ...defaultTheme.fontFamily.sans],
-        opensans: 'Open-Sans',
+        poppins: ['Poppins', ...defaultTheme.fontFamily.sans],
         ...defaultTheme.fontFamily.sans,
       },
     },
