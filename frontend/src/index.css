@@ -3,3 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-gradient {
+  background: radial-gradient(
+    1160.74% 294.24% at -24.78% -20.73%,
+    #e7ddee 0%,
+    #d3b5eb 100%
+  );
+}

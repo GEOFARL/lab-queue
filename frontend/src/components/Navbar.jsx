@@ -27,7 +27,7 @@ const Navbar = () => {
 
       <div className="flex">
         <Button>Sing In</Button>
-        <Button>Sing Up</Button>
+        <Button alternative={true}>Sing Up</Button>
       </div>
     </nav>
   );
