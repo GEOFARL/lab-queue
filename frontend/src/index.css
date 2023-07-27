@@ -11,3 +11,41 @@
     #d3b5eb 100%
   );
 }
+
+.card-gradient {
+  background: linear-gradient(21deg, #8f2bdd -150%, rgb(255, 255, 255) 140%);
+}
+
+.text-gradient {
+  background: linear-gradient(61deg, #e4cff5 0%, #8b25dc 49.27%, #cb88ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.animation {
+  -webkit-animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@-webkit-keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(75px);
+    transform: translateY(75px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(75px);
+    transform: translateY(75px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
