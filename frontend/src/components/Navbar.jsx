@@ -56,6 +56,7 @@ const Navbar = () => {
               <div
                 key={link.id}
                 className={`${index !== links.length - 1 ? 'mb-4' : 'mr-0'}`}
+                onClick={() => setOpen(false)}
               >
                 <NavLink
                   to={link.to}
