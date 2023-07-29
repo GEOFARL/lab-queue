@@ -12,9 +12,11 @@ const Hero = () => {
           </h1>
 
           <p className="max-w-[400px] lg:max-w-[515px] mt-6 font-lato text-[16px] leading-[23px] lg:text-[20px] lg:leading-[28.3px]">
-            Your Hassle-Free Solution! it is the go-to platform for students
-            looking to submit their labs with ease and efficiency. Say goodbye
-            to long waiting lines and disorganized processes.
+            Your{' '}
+            <span className="text-purple-500 font-semibold">Hassle-Free</span>{' '}
+            Solution! it is the go-to platform for students looking to submit
+            their labs with ease and efficiency. Say goodbye to long waiting
+            lines and disorganized processes.
           </p>
         </div>
 

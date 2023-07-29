@@ -13,7 +13,12 @@
 }
 
 .card-gradient {
-  background: linear-gradient(21deg, #8f2bdd -150%, rgb(255, 255, 255) 140%);
+  background: linear-gradient(
+    21deg,
+    #8f2bdd -200%,
+    #d5a8f7 0%,
+    rgb(255, 255, 255) 120%
+  );
 }
 
 .text-gradient {
