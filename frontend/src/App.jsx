@@ -11,6 +11,8 @@ import Queues from './pages/Queues';
 import Polling from './pages/Polling';
 import Announcements from './pages/Announcements';
 import RootLayout from './layouts/RootLayout';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +22,8 @@ const router = createBrowserRouter(
       <Route path="queues" element={<Queues />} />
       <Route path="polling" element={<Polling />} />
       <Route path="announcements" element={<Announcements />} />
+      <Route path="sing-in" element={<SignIn />} />
+      <Route path="sing-up" element={<SignUp />} />
     </Route>
   )
 );
