@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 py-16">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-16">
         {cards.map((card) => (
           <Card {...card} key={card.id} />
         ))}
