@@ -61,7 +61,7 @@ const SignUpForm = () => {
           </a>
         </div>
 
-        <div className="form-control password relative">
+        <div className="form-control password relative mb-5">
           <label htmlFor="confirm-password">Confirm password</label>
           <input
             type={`${hideConfirmPassword ? 'password' : 'text'}`}
@@ -87,6 +87,20 @@ const SignUpForm = () => {
               }`}
             />
           </div>
+        </div>
+
+        <div className="">
+          <input
+            type="checkbox"
+            id="agree-terms"
+            className="mr-3 bg-[#E3D2E4]"
+          />
+          <label htmlFor="agree-terms">
+            I agree to the{' '}
+            <a href="#" className="underline">
+              Terms & Privacy
+            </a>
+          </label>
         </div>
       </div>
     </div>
