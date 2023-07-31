@@ -1,6 +1,12 @@
 import asyncHandler from 'express-async-handler';
 import User from '../models/User.js';
-import jwt from 'jsonwebtoken';
+import generateToken from '../utils/generateToken.js';
+import {
+  isValidEmail,
+  isValidName,
+  isValidPassword,
+  passwordEquals,
+} from '../utils/validation.js';
 
 // @desc    Sing up a new user
 // @route   POST /api/auth/sing-up
@@ -16,20 +22,39 @@ const singUp = asyncHandler(async (req, res, next) => {
     throw new Error('User already exists');
   }
 
+  // Validate user inputs
+  if (!passwordEquals(password, confirmPassword)) {
+    res.status(400);
+    throw new Error('Passwords do not match');
+  }
+
+  if (!isValidName(name)) {
+    res.status(400);
+    throw new Error('Name should only contain alphabets and spaces');
+  }
+
+  if (!isValidEmail(email)) {
+    res.status(400);
+    throw new Error('Not valid email');
+  }
+
+  if (!isValidPassword(password)) {
+    res.status(400);
+    throw new Error(
+      'Password should contain at least one uppercase letter, one lowercase letter, and one number'
+    );
+  }
+
   const user = await User.create({ name, email, imageUri, password });
 
   if (user) {
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '30d',
-    });
+    generateToken(res, user._id);
 
-    res.cookie('jwt', token, {
-      httpOnly: true,
-      maxAge: 30 * 24 * 3600 * 1000,
-      sameSite: 'strict',
+    res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
     });
-
-    res.json('Register user');
   } else {
     res.status(400);
     throw new Error('Invalid user data');
