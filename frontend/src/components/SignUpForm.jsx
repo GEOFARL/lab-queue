@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { HiEye, HiEyeSlash } from 'react-icons/hi2';
+import Checkbox from './Checkbox';
+import Button from './Button';
 
 const SignUpForm = () => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -89,18 +91,21 @@ const SignUpForm = () => {
           </div>
         </div>
 
-        <div className="">
-          <input
-            type="checkbox"
-            id="agree-terms"
-            className="mr-3 bg-[#E3D2E4]"
-          />
-          <label htmlFor="agree-terms">
-            I agree to the{' '}
-            <a href="#" className="underline">
-              Terms & Privacy
-            </a>
-          </label>
+        <Checkbox
+          label={
+            <span>
+              I agree to the{' '}
+              <a href="#" className="underline">
+                Terms & Privacy
+              </a>
+            </span>
+          }
+        />
+
+        <div className="py-8 flex justify-center">
+          <Button classes={'px-8 md:px-10 py-2 md:py-3'}>
+            <span className="text-[18px]">Create an Account</span>
+          </Button>
         </div>
       </div>
     </div>

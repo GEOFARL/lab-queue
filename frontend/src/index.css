@@ -58,6 +58,45 @@
   opacity: 1;
 }
 
+.checkbox-wrapper input[type='checkbox'] {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  margin-right: 10px;
+  border: 1px solid #bc9bbf;
+  background-color: #e3d2e4;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkbox-wrapper label {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.checkbox-wrapper input[type='checkbox']:focus {
+  @apply ring-1 ring-[#936C97];
+}
+
+input:checked {
+  background-color: #007a7e;
+  position: relative;
+}
+
+input:checked::before {
+  content: '•';
+  font-size: 37.5px;
+  color: #6b4a6e;
+  position: absolute;
+  right: -0.7px;
+  top: -20.75px;
+}
+
 @-webkit-keyframes slide-top {
   0% {
     -webkit-transform: translateY(75px);
