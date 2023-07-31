@@ -72,7 +72,12 @@ const singIn = asyncHandler(async (req, res, next) => {
 // @route   POST /api/auth/logout
 // @access  Public
 const logout = asyncHandler(async (req, res, next) => {
-  res.json('Logout a user');
+  res.cookie('jwt', '', {
+    httpOnly: true,
+    expires: new Date(0),
+  });
+
+  res.status(200).json({ message: 'Logout User' });
 });
 
 // @desc    Get user's info
