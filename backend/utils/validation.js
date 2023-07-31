@@ -6,7 +6,7 @@ const passwordEquals = (password, confirmPassword) => {
 
 const isValidName = (name) => {
   // Validate that the name contains only alphabets and spaces
-  return validator.isAlpha(name.replace(/\s/g, ''));
+  return validator.isAlphanumeric(name.replace(/\s/g, ''));
 };
 
 const isValidEmail = (email) => {

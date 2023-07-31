@@ -33,6 +33,31 @@
   animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
+.sing-up-form {
+  background: radial-gradient(
+    106.79% 101.9% at 32.03% 33.84%,
+    #efdef2 0%,
+    rgba(242, 228, 244, 0) 100%
+  );
+  box-shadow: 0px 8px 17px 0px rgba(0, 0, 0, 0.05);
+}
+
+.form-control label {
+  @apply block px-1 py-2 text-sm sm:text-base;
+}
+
+.form-control input {
+  @apply bg-[#E3D2E4] py-2 px-3 rounded-xl w-full outline-none text-sm sm:text-base font-lato border-[1px] border-[#BC9BBF] focus:ring-[3px] focus:ring-[#936C97];
+}
+
+.password input {
+  @apply pr-12;
+}
+
+.active-img {
+  opacity: 1;
+}
+
 @-webkit-keyframes slide-top {
   0% {
     -webkit-transform: translateY(75px);
