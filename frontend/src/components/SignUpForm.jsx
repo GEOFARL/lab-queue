@@ -3,12 +3,15 @@ import { HiEye, HiEyeSlash } from 'react-icons/hi2';
 import Checkbox from './Checkbox';
 import Button from './Button';
 
+import googleLogo from '../assets/google.png';
+import githubLogo from '../assets/github.png';
+
 const SignUpForm = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
 
   return (
-    <div className="w-full sing-up-form rounded-[25px] p-[33px] font-poppins">
+    <div className="w-full sing-up-form rounded-[25px] py-[48px] md:py-[64px] px-[32px] font-poppins">
       <h2 className="text-center text-[24px] sm:text-[28px] font-semibold capitalize mb-2">
         Create an account
       </h2>
@@ -93,7 +96,7 @@ const SignUpForm = () => {
 
         <Checkbox
           label={
-            <span>
+            <span className="text-sm sm:text-base">
               I agree to the{' '}
               <a href="#" className="underline">
                 Terms & Privacy
@@ -104,8 +107,25 @@ const SignUpForm = () => {
 
         <div className="py-8 flex justify-center">
           <Button classes={'px-8 md:px-10 py-2 md:py-3'}>
-            <span className="text-[18px]">Create an Account</span>
+            <span className="text-base sm:text-[18px]">Create an Account</span>
           </Button>
+        </div>
+
+        <div className="flex justify-center items-center gap-4">
+          <div className="border-t-[1px] opacity-40 flex-1"></div>
+          <div>or</div>
+          <div className="border-t-[1px] opacity-40 flex-1"></div>
+        </div>
+
+        <div className="flex flex-col gap-4 sm:flex-row items-center justify-evenly mt-5">
+          <button className="flex items-center justify-center gap-2 bg-white px-3 py-2 rounded-2xl shadow cursor-pointer hover:ring-4 transition-all duration-150 text-sm sm:text-base">
+            <img src={googleLogo} alt="google logo" />
+            Continue with Google
+          </button>
+          <button className="flex items-center justify-center gap-2 bg-white px-3 py-2 rounded-2xl shadow cursor-pointer hover:ring-4 transition-all duration-150 text-sm sm:text-base">
+            <img src={githubLogo} alt="github logo" />
+            Continue with GitHub
+          </button>
         </div>
       </div>
     </div>

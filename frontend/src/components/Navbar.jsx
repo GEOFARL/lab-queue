@@ -44,12 +44,12 @@ const Navbar = () => {
           {!open ? <HiBars3 size={'32px'} /> : <HiXMark size={'32px'} />}
         </div>
         <div className="flex gap-6 sm:gap-12">
-          <Button>
-            <Link to="sing-in">Sing In</Link>
-          </Button>
-          <Button alternative={true}>
-            <Link to="sing-up">Sing Up</Link>
-          </Button>
+          <Link to="sing-in">
+            <Button>Sing In</Button>
+          </Link>
+          <Link to="sing-up">
+            <Button alternative={true}>Sing Up</Button>
+          </Link>
         </div>
       </div>
 
