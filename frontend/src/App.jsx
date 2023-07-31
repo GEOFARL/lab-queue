@@ -5,6 +5,8 @@ import {
   Route,
 } from 'react-router-dom';
 
+import { Provider } from 'react-redux';
+
 import Home from './pages/Home';
 import About from './pages/About';
 import Queues from './pages/Queues';
@@ -13,6 +15,7 @@ import Announcements from './pages/Announcements';
 import RootLayout from './layouts/RootLayout';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import store from './store';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,7 +32,11 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  );
 }
 
 export default App;
