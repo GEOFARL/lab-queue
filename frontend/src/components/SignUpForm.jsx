@@ -22,7 +22,8 @@ const SignUpForm = ({ data, setData, onSubmit, errors }) => {
       <h2 className="text-center text-[24px] sm:text-[28px] font-semibold capitalize mb-2">
         Create an account
       </h2>
-      <form className="max-w-[560px] mx-auto" onSubmit={onSubmit}>
+      <div className="text-red-500 text-center">{errors.serverError}</div>
+      <form className="max-w-[560px] mx-auto" onSubmit={onSubmit} noValidate>
         <div className="form-control mb-5 relative">
           <label htmlFor="name">Name</label>
           <input
@@ -145,7 +146,7 @@ const SignUpForm = ({ data, setData, onSubmit, errors }) => {
           }
         />
         <div className="text-red-500 px-1 text-xs sm:text-base pt-1 -mb-3">
-          {/* Passwords do not match */}
+          {/* Please, agree to the Terms and Privacy */}
           {errors.termsPrivacy}
         </div>
 

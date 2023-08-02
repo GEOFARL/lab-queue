@@ -11,6 +11,7 @@ const Checkbox = ({ label, checked, ...props }) => {
           onChange={() => setIsChecked((prev) => !prev)}
           {...props}
           checked={isChecked}
+          className="checkbox"
         />
         {label}
       </label>
