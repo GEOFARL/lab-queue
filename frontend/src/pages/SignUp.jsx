@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SingUpForm from '../components/SignUpForm';
 import { useSignUpMutation } from '../slices/authApiSlice';
 import validator from 'validator';
+import { PulseLoader } from 'react-spinners';
 
 const SignUp = () => {
   const [signUp, { isLoading }] = useSignUpMutation();
@@ -125,15 +126,26 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-full mx-auto max-w-[800px] py-16 sm:py-32">
-      <SingUpForm
-        data={data}
-        setData={setData}
-        onSubmit={onSubmit}
-        errors={errors}
-        setErrors={setErrors}
-      />
-    </div>
+    <>
+      <div className="w-full mx-auto max-w-[800px] py-16 sm:py-32">
+        <SingUpForm
+          data={data}
+          setData={setData}
+          onSubmit={onSubmit}
+          errors={errors}
+          setErrors={setErrors}
+        />
+      </div>
+      {isLoading && (
+        <div className="fixed inset-0 bg-zinc-700 bg-opacity-70 flex justify-center items-center">
+          <PulseLoader
+            color={'#330430'}
+            size={50}
+            aria-label="Loading Spinner"
+          />
+        </div>
+      )}
+    </>
   );
 };
 
