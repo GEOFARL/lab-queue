@@ -12,6 +12,7 @@ import {
 // @route   POST /api/auth/sing-up
 // @access  Public
 const singUp = asyncHandler(async (req, res, next) => {
+  console.log('sing up');
   const { name, email, imageUri, password, confirmPassword } = req.body;
 
   // Check if the user already exists

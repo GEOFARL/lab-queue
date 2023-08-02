@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import colors from 'colors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
@@ -15,6 +16,12 @@ connectDB();
 
 app.use(express.urlencoded({ extended: 'false' }));
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+  })
+);
 
 app.use('/api/auth', authRoutes);
 

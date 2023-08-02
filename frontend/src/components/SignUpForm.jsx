@@ -6,29 +6,55 @@ import Button from './Button';
 import googleLogo from '../assets/google.png';
 import githubLogo from '../assets/github.png';
 
-const SignUpForm = () => {
+const SignUpForm = ({ data, setData, onSubmit, errors }) => {
   const [hidePassword, setHidePassword] = useState(true);
   const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
+
+  const onChange = (e) => {
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <div className="w-full sing-up-form rounded-[25px] py-[48px] md:py-[64px] px-[32px] font-poppins">
       <h2 className="text-center text-[24px] sm:text-[28px] font-semibold capitalize mb-2">
         Create an account
       </h2>
-      <div className="max-w-[560px] mx-auto">
-        <div className="form-control mb-5">
+      <form className="max-w-[560px] mx-auto" onSubmit={onSubmit}>
+        <div className="form-control mb-5 relative">
           <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="Alek228" />
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Alek228"
+            onChange={onChange}
+            value={data.name}
+            className={`${errors.name ? 'input-error' : ''}`}
+          />
+          <div className="text-red-500 px-1 text-xs sm:text-base pt-2 -mb-3">
+            {/* Name should only contain alphabets and spaces */}
+            {errors.name}
+          </div>
         </div>
 
-        <div className="form-control mb-5">
+        <div className="form-control mb-5 relative">
           <label htmlFor="email">Your email</label>
           <input
             type="email"
             name="email"
             id="email"
             placeholder="john_doe@gmail.com"
+            onChange={onChange}
+            value={data.email}
+            className={`${errors.email ? 'input-error' : ''}`}
           />
+          <div className="text-red-500 px-1 text-xs sm:text-base pt-2 -mb-3">
+            {/* Not valid email */}
+            {errors.email}
+          </div>
         </div>
 
         <div className="form-control password relative mb-5">
@@ -38,7 +64,14 @@ const SignUpForm = () => {
             name="password"
             id="password"
             placeholder="••••••••••"
+            onChange={onChange}
+            value={data.password}
+            className={`${errors.email ? 'input-error' : ''}`}
           />
+          <div className="text-red-500 px-1 text-xs sm:text-base pt-2 -mb-3">
+            {/* Password should contain at least one uppercase letter, one lowercase letter, and one number */}
+            {errors.password}
+          </div>
           <div
             onClick={() => {
               setHidePassword((prev) => !prev);
@@ -67,13 +100,20 @@ const SignUpForm = () => {
         </div>
 
         <div className="form-control password relative mb-5">
-          <label htmlFor="confirm-password">Confirm password</label>
+          <label htmlFor="confirmPassword">Confirm password</label>
           <input
             type={`${hideConfirmPassword ? 'password' : 'text'}`}
-            name="confirm-password"
-            id="confirm-password"
+            name="confirmPassword"
+            id="confirmPassword"
             placeholder="••••••••••"
+            onChange={onChange}
+            value={data.confirmPassword}
+            className={`${errors.email ? 'input-error' : ''}`}
           />
+          <div className="text-red-500 px-1 text-xs sm:text-base pt-2 -mb-3">
+            {/* Passwords do not match */}
+            {errors.confirmPassword}
+          </div>
           <div
             onClick={() => {
               setHideConfirmPassword((prev) => !prev);
@@ -104,6 +144,10 @@ const SignUpForm = () => {
             </span>
           }
         />
+        <div className="text-red-500 px-1 text-xs sm:text-base pt-1 -mb-3">
+          {/* Passwords do not match */}
+          {errors.termsPrivacy}
+        </div>
 
         <div className="py-8 flex justify-center">
           <Button classes={'px-8 md:px-10 py-2 md:py-3'}>
@@ -127,7 +171,7 @@ const SignUpForm = () => {
             Continue with GitHub
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
