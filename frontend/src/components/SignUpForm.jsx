@@ -33,7 +33,6 @@ const SignUpForm = ({
   const handleCheckBox = () => {
     if (submitted) {
       if (checkBox.current.checked && errors.termsPrivacy.length > 0) {
-        console.log(checkBox.current.checked);
         setErrors((prev) => ({
           ...prev,
           termsPrivacy: '',

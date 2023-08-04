@@ -4,6 +4,8 @@ import { useSignUpMutation } from '../slices/authApiSlice';
 import validator from 'validator';
 import { PulseLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../slices/authSlice';
 
 const SignUp = () => {
   const [signUp, { isLoading }] = useSignUpMutation();
@@ -23,6 +25,8 @@ const SignUp = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+
+  const dispatch = useDispatch();
 
   const checkForErrors = () => {
     let haveErrors = false;
@@ -143,10 +147,15 @@ const SignUp = () => {
 
     const res = await signUp(data);
 
+    if (res.data) {
+      dispatch(setCredentials(res.data));
+    }
+
     if (!res.ok) {
       toast.error(res?.error?.data?.message, {
         theme: 'colored',
       });
+      return;
     }
   };
 

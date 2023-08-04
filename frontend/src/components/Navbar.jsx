@@ -3,6 +3,7 @@ import Button from './Button';
 import { HiBars3, HiXMark } from 'react-icons/hi2';
 import styles from '../styles';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const links = [
   { title: 'Home', id: Math.random(), to: '/' },
@@ -14,6 +15,8 @@ const links = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+
+  const { userInfo } = useSelector((state) => state.auth);
 
   return (
     <nav className="py-8 w-full relative text-sm sm:text-base">
@@ -43,14 +46,16 @@ const Navbar = () => {
         >
           {!open ? <HiBars3 size={'32px'} /> : <HiXMark size={'32px'} />}
         </div>
-        <div className="flex gap-6 sm:gap-12">
-          <Link to="sing-in">
-            <Button>Sing In</Button>
-          </Link>
-          <Link to="sing-up">
-            <Button alternative={true}>Sing Up</Button>
-          </Link>
-        </div>
+        {!userInfo && (
+          <div className="flex gap-6 sm:gap-12">
+            <Link to="sing-in">
+              <Button>Sing In</Button>
+            </Link>
+            <Link to="sing-up">
+              <Button alternative={true}>Sing Up</Button>
+            </Link>
+          </div>
+        )}
       </div>
 
       {open && (
