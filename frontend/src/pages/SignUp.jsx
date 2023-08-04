@@ -3,6 +3,7 @@ import SingUpForm from '../components/SignUpForm';
 import { useSignUpMutation } from '../slices/authApiSlice';
 import validator from 'validator';
 import { PulseLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const [signUp, { isLoading }] = useSignUpMutation();
@@ -19,16 +20,13 @@ const SignUp = () => {
     password: '',
     confirmPassword: '',
     termsPrivacy: '',
-    serverError: '',
   });
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const [submitted, setSubmitted] = useState(false);
 
-    const formData = new FormData(e.target);
-
+  const checkForErrors = () => {
     let haveErrors = false;
-
+    const formData = new FormData(document.getElementById('sign-up-form'));
     for (let [key, value] of formData.entries()) {
       switch (key) {
         case 'name': {
@@ -44,6 +42,11 @@ const SignUp = () => {
               [key]: 'Name should only contain alphabets and spaces',
             }));
             haveErrors = true;
+          } else {
+            setErrors((prev) => ({
+              ...prev,
+              [key]: '',
+            }));
           }
           break;
         }
@@ -60,6 +63,11 @@ const SignUp = () => {
               [key]: 'Not valid email',
             }));
             haveErrors = true;
+          } else {
+            setErrors((prev) => ({
+              ...prev,
+              [key]: '',
+            }));
           }
           break;
         }
@@ -84,6 +92,11 @@ const SignUp = () => {
                 'Password should contain at least one uppercase letter, one lowercase letter, and one number',
             }));
             haveErrors = true;
+          } else {
+            setErrors((prev) => ({
+              ...prev,
+              [key]: '',
+            }));
           }
           break;
         }
@@ -94,6 +107,11 @@ const SignUp = () => {
               [key]: 'Passwords do not match',
             }));
             haveErrors = true;
+          } else {
+            setErrors((prev) => ({
+              ...prev,
+              [key]: '',
+            }));
           }
           break;
         }
@@ -102,6 +120,15 @@ const SignUp = () => {
         }
       }
     }
+
+    return haveErrors;
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+
+    let haveErrors = checkForErrors();
 
     if (!e.target.querySelector('.checkbox').checked) {
       setErrors((prev) => ({
@@ -117,12 +144,10 @@ const SignUp = () => {
     const res = await signUp(data);
 
     if (!res.ok) {
-      setErrors((prev) => ({
-        ...prev,
-        serverError: res?.error?.data?.message,
-      }));
+      toast.error(res?.error?.data?.message, {
+        theme: 'colored',
+      });
     }
-    console.log(res);
   };
 
   return (
@@ -134,6 +159,8 @@ const SignUp = () => {
           onSubmit={onSubmit}
           errors={errors}
           setErrors={setErrors}
+          submitted={submitted}
+          checkForErrors={checkForErrors}
         />
       </div>
       {isLoading && (

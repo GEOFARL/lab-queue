@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { HiEye, HiEyeSlash } from 'react-icons/hi2';
 import Checkbox from './Checkbox';
 import Button from './Button';
@@ -6,15 +6,45 @@ import Button from './Button';
 import googleLogo from '../assets/google.png';
 import githubLogo from '../assets/github.png';
 
-const SignUpForm = ({ data, setData, onSubmit, errors }) => {
+const SignUpForm = ({
+  data,
+  setData,
+  onSubmit,
+  errors,
+  setErrors,
+  submitted,
+  checkForErrors,
+}) => {
   const [hidePassword, setHidePassword] = useState(true);
   const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
+  const checkBox = useRef(null);
 
   const onChange = (e) => {
     setData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+
+    if (submitted) {
+      checkForErrors();
+    }
+  };
+
+  const handleCheckBox = () => {
+    if (submitted) {
+      if (checkBox.current.checked && errors.termsPrivacy.length > 0) {
+        console.log(checkBox.current.checked);
+        setErrors((prev) => ({
+          ...prev,
+          termsPrivacy: '',
+        }));
+      } else {
+        setErrors((prev) => ({
+          ...prev,
+          termsPrivacy: 'Please, agree to the Terms and Privacy',
+        }));
+      }
+    }
   };
 
   return (
@@ -22,8 +52,12 @@ const SignUpForm = ({ data, setData, onSubmit, errors }) => {
       <h2 className="text-center text-[24px] sm:text-[28px] font-semibold capitalize mb-2">
         Create an account
       </h2>
-      <div className="text-red-500 text-center">{errors.serverError}</div>
-      <form className="max-w-[560px] mx-auto" onSubmit={onSubmit} noValidate>
+      <form
+        className="max-w-[560px] mx-auto"
+        onSubmit={onSubmit}
+        noValidate
+        id="sign-up-form"
+      >
         <div className="form-control mb-5 relative">
           <label htmlFor="name">Name</label>
           <input
@@ -144,6 +178,8 @@ const SignUpForm = ({ data, setData, onSubmit, errors }) => {
               </a>
             </span>
           }
+          ref={checkBox}
+          onChange={handleCheckBox}
         />
         <div className="text-red-500 px-1 text-xs sm:text-base pt-1 -mb-3">
           {/* Please, agree to the Terms and Privacy */}

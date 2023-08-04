@@ -17,6 +17,9 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import store from './store';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
@@ -35,6 +38,7 @@ function App() {
   return (
     <Provider store={store}>
       <RouterProvider router={router} />
+      <ToastContainer />
     </Provider>
   );
 }
