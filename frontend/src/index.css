@@ -21,6 +21,15 @@
   );
 }
 
+.profile-card-gradient {
+  background: linear-gradient(
+    21deg,
+    #77688485 -200%,
+    #807a8480 0%,
+    rgb(255, 255, 255) 120%
+  );
+}
+
 .text-gradient {
   background: linear-gradient(61deg, #e4cff5 0%, #8b25dc 49.27%, #cb88ff 100%);
   -webkit-background-clip: text;

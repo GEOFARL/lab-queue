@@ -6,6 +6,7 @@ import { PulseLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slices/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [signUp, { isLoading }] = useSignUpMutation();
@@ -27,6 +28,7 @@ const SignUp = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const checkForErrors = () => {
     let haveErrors = false;
@@ -149,6 +151,7 @@ const SignUp = () => {
 
     if (res.data) {
       dispatch(setCredentials(res.data));
+      navigate('/');
     }
 
     if (!res.ok) {

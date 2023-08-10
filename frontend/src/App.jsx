@@ -15,6 +15,7 @@ import Announcements from './pages/Announcements';
 import RootLayout from './layouts/RootLayout';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
 import store from './store';
 
 import { ToastContainer } from 'react-toastify';
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
       <Route path="announcements" element={<Announcements />} />
       <Route path="sing-in" element={<SignIn />} />
       <Route path="sing-up" element={<SignUp />} />
+      <Route path="profile" element={<Profile />} />
     </Route>
   )
 );
