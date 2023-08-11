@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setCredentials } from '../slices/authSlice';
 import { PulseLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
   const [signIn, { isLoading }] = useSingInMutation();
@@ -28,6 +29,10 @@ const SignIn = () => {
     if (res.data) {
       dispatch(setCredentials(res.data));
       navigate('/');
+    }
+
+    if (res.error) {
+      toast.error(res?.error?.data?.message, { theme: 'colored' });
     }
   };
 

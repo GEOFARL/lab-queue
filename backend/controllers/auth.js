@@ -66,15 +66,19 @@ const singUp = asyncHandler(async (req, res, next) => {
 // @access  Public
 const singIn = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log('sing in');
 
   const user = await User.findOne({ email });
-  console.log(req.body);
-  res.json({
-    id: user._id,
-    name: user.name,
-    email: user.email,
-  });
+
+  if (user && (await user.matchPasswords(password))) {
+    res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } else {
+    res.status(400);
+    throw new Error('Invalid credentials');
+  }
 });
 
 // @desc    Logout a user
