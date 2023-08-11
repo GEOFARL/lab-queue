@@ -20,6 +20,7 @@ import store from './store';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import checkAuth from './utils/checkAuth';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,7 +32,11 @@ const router = createBrowserRouter(
       <Route path="announcements" element={<Announcements />} />
       <Route path="sing-in" element={<SignIn />} />
       <Route path="sing-up" element={<SignUp />} />
-      <Route path="profile" element={<Profile />} />
+      <Route
+        path="profile"
+        element={<Profile />}
+        loader={async () => await checkAuth()}
+      />
     </Route>
   )
 );
