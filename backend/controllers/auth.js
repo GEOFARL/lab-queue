@@ -12,7 +12,6 @@ import {
 // @route   POST /api/auth/sing-up
 // @access  Public
 const singUp = asyncHandler(async (req, res, next) => {
-  console.log('sing up');
   const { name, email, imageUri, password, confirmPassword } = req.body;
 
   // Check if the user already exists
@@ -66,7 +65,16 @@ const singUp = asyncHandler(async (req, res, next) => {
 // @route   POST /api/auth/sing-in
 // @access  Public
 const singIn = asyncHandler(async (req, res, next) => {
-  res.json('Sing in user');
+  const { email, password } = req.body;
+  console.log('sing in');
+
+  const user = await User.findOne({ email });
+  console.log(req.body);
+  res.json({
+    id: user._id,
+    name: user.name,
+    email: user.email,
+  });
 });
 
 // @desc    Logout a user

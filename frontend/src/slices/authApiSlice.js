@@ -11,7 +11,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    singIn: builder.mutation({
+      query: (data) => ({
+        url: `${AUTH_URL}/sing-in`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useSignUpMutation } = authApiSlice;
+export const { useSignUpMutation, useSingInMutation } = authApiSlice;

@@ -154,7 +154,7 @@ const SignUp = () => {
       navigate('/');
     }
 
-    if (!res.ok) {
+    if (res.error) {
       toast.error(res?.error?.data?.message, {
         theme: 'colored',
       });

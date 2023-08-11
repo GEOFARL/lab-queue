@@ -84,7 +84,7 @@ const Navbar = () => {
             {profileTabOpen && (
               <ul className="absolute duration-300 top-[68px] right-[22px] min-w-max animation flex flex-col list-none items-center z-10 p-2 profile-card-gradient rounded-xl">
                 <li
-                  className="font-poppins px-[8px] py-[10px] cursor-pointer"
+                  className="font-poppins px-[14px] py-[10px] cursor-pointer"
                   onClick={() => {
                     setProfileTabOpen(false);
                   }}
@@ -93,7 +93,7 @@ const Navbar = () => {
                 </li>
                 <li className="w-full h-[1px] bg-slate-500"></li>
                 <li
-                  className="font-poppins px-[8px] py-[10px] cursor-pointer"
+                  className="font-poppins px-[14px] py-[10px] cursor-pointer"
                   onClick={() => {
                     setProfileTabOpen(false);
                     dispatch(logout());
